@@ -1,7 +1,7 @@
 {
   "name": "jade-editor",
   "description": "jade online editor",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "keywords": [
     "jade",
     "editor"
@@ -33,6 +33,7 @@
     "/views/",
     "/*.js",
     "/*.json",
+    "/*.sh",
     "/public/"
   ]
 }

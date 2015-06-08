@@ -118,6 +118,8 @@ JadeEditor.prototype.handleKeyEvt_tab = function(event) {
 	else {
 		targetText = opts.indent + targetText.replace(/\n/g, '\n' + opts.indent)
 		dom.value = sOldText.substring(0, nSelStart) + targetText + sOldText.substring(nSelEnd)
+		dom.selectionStart = nSelStart === nSelEnd?nSelStart + opts.indent.length:nSelStart
+		dom.selectionEnd = nSelStart === nSelEnd?nSelStart + opts.indent.length:nSelStart + targetText.length
 	}
 
 	//end
@@ -191,12 +193,17 @@ JadeEditor.prototype.handleKeyEvt_open_bracket = function(event) {
 
 	event.preventDefault()
 
-	if(!event.ctrlKey) return dom.value = 
-		sOldText.substring(0, nSelStart) +
-		charOpen + 
-		targetText + 
-		charClose +
-		sOldText.substring(nSelEnd)
+	if(!event.ctrlKey) {
+		dom.value = 
+			sOldText.substring(0, nSelStart) +
+			charOpen + 
+			targetText + 
+			charClose +
+			sOldText.substring(nSelEnd)
+		dom.selectionStart = nSelStart === nSelEnd?nSelStart + 1:nSelStart
+		dom.selectionEnd = nSelEnd + (nSelStart === nSelEnd?1:2)
+		return
+	}
 
 	var noSel = !targetText.length
 
@@ -217,15 +224,29 @@ JadeEditor.prototype.handleKeyEvt_open_bracket = function(event) {
 	}
 	targetText = res.join('\n')
 
-	if(noSel) return dom.value = 
-		btext +
-		targetText + 
-		sOldText.substring(nSelEnd)
+	if(noSel) {
+		dom.value = 
+			btext +
+			targetText + 
+			sOldText.substring(nSelEnd)
 
-	dom.value = 
-		sOldText.substring(0, nSelStart) +
-		targetText + 
-		sOldText.substring(nSelEnd)
+		dom.selectionStart = btext.length
+		dom.selectionEnd = btext.length
+	}
+
+
+	else {
+		dom.value = 
+			sOldText.substring(0, nSelStart) +
+			targetText + 
+			sOldText.substring(nSelEnd)
+
+
+		dom.selectionStart = nSelStart
+		dom.selectionEnd = nSelStart + (nSelStart === nSelEnd?0:targetText.length + 1)
+	}
+
+
 
 
 
@@ -257,6 +278,9 @@ JadeEditor.prototype.handleKeyEvt_single_quote = function(event) {
 		char +
 		sOldText.substring(nSelEnd)
 
+	dom.selectionStart = nSelStart === nSelEnd?nSelStart + 1:nSelStart
+	dom.selectionEnd = nSelEnd + (nSelStart === nSelEnd?1:2)
+
 }
 
 JadeEditor.prototype.handleKeyEvt_left_bracket = function(event) {
@@ -281,6 +305,9 @@ JadeEditor.prototype.handleKeyEvt_left_bracket = function(event) {
 		')' +
 		sOldText.substring(nSelEnd)
 
+	dom.selectionStart = nSelStart === nSelEnd?nSelStart + 1:nSelStart
+	dom.selectionEnd = nSelEnd + (nSelStart === nSelEnd?1:2)
+
 }
 
 JadeEditor.prototype.handleKeyEvt_i = function(event) {
@@ -303,7 +330,8 @@ JadeEditor.prototype.handleKeyEvt_i = function(event) {
 		'</i>' + 
 		sOldText.substring(nSelEnd)
 
-
+	dom.selectionStart = nSelStart === nSelEnd?nSelStart + 3:nSelStart
+	dom.selectionEnd = nSelEnd + (nSelStart === nSelEnd?3:7)
 }
 
 JadeEditor.prototype.handleKeyEvt_b = function(event) {
@@ -326,6 +354,8 @@ JadeEditor.prototype.handleKeyEvt_b = function(event) {
 		'</b>' + 
 		sOldText.substring(nSelEnd)
 
+	dom.selectionStart = nSelStart === nSelEnd?(nSelStart + 3):nSelStart
+	dom.selectionEnd = nSelEnd + (nSelStart === nSelEnd?3:7)
 }
 
 window.JadeEditor = JadeEditor

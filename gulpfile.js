@@ -8,7 +8,7 @@ var pkg = require('./package.json')
 var fs = require('fs')
 var rename = require('gulp-rename')
 var plumber = require('gulp-plumber')
-
+var watch = require('gulp-watch')
 
 // CONFIG
 //
@@ -80,6 +80,7 @@ gulp.task('karma:unit', function() {
 	})
 })
 
+
 // DEFAULT
 //
 var runSequence = require('run-sequence')
@@ -91,4 +92,12 @@ gulp.task('test', function() {
 
 gulp.task('dist', function() {
 	runSequence('clean:dist', 'scripts:dist')
+})
+
+
+gulp.task('watch',  function () {
+	watch('./src/' + pkg.name + '.js', function() {
+		runSequence('dist')
+	})
+
 })
