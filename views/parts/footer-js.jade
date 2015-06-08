@@ -1,0 +1,10 @@
+script.
+	window.h5 = {
+		host: '#{host}'
+		,href: '#{href}'
+	}
+
+- if(!ua || ua.modern)
+	script(src='#{cdn}/apps/h5/js/min/pack.js?#{version}')
+- else
+	script(src='#{cdn}/apps/h5/js/min/pack-old.js?#{version}')

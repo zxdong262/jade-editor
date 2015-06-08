@@ -1,0 +1,8 @@
+/src
+/views
+/lib
+/*.js
+/*.json
+/*.sh
+/test
+/log

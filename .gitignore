@@ -1,9 +1,15 @@
 # Logs
-logs
 *.log
+.DS_Store
+*.rdb
+
+# config etc
+.idea/
+/config.js
+/local/
 
 # Runtime data
-pids
+#pids
 *.pid
 *.seed
 
@@ -19,9 +25,5 @@ coverage
 # node-waf configuration
 .lock-wscript
 
-# Compiled binary addons (http://nodejs.org/api/addons.html)
-build/Release
-
 # Dependency directory
-# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
-node_modules
+/node_modules/

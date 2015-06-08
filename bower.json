@@ -1,0 +1,38 @@
+{
+  "name": "jade-editor",
+  "description": "jade online editor",
+  "version": "0.0.1",
+  "keywords": [
+    "jade",
+    "editor"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "main": "dist/jade-editor.js",
+  "homepage": "http://jade-editor.org",
+  "bugs": "https://github.com/zxdong262/jade-editor/issues",
+  "author": {
+    "email": "zxdong@gmail.com",
+    "name": "ZHAO Xudong",
+    "url": "http://html5beta.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zxdong262/jade-editor"
+  },
+  "licenses": "MIT",
+  "dependencies": {},
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "/routes/",
+    "/lib/",
+    "/views/",
+    "/*.js",
+    "/*.json",
+    "/public/"
+  ]
+}

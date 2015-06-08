@@ -1,0 +1,74 @@
+include parts/head1
+meta(name='description', content='#{siteDesc}')
+meta(name='keywords', content='#{siteKeywords}')
+title #{siteName}
+include parts/head2
+include parts/bg
+#wrapper
+
+	#content.container
+		.row
+
+			//left-panel
+			.left-panel.col-sm-4.col-md-3.col-lg-2.alignright
+
+				.pdtb.pdlr
+					h1.h1
+						| #{siteName}
+						small v#{version}
+					p #{siteDesc}
+					p
+						a.btn.btn-sm.btn-default.mg-sec(href='https://github.com/zxdong262/jade-editor', rel='external nofollow', target='_blank') @github
+						a.btn.btn-sm.btn-success(href='https://github.com/zxdong262/jade-editor/releases', rel='external nofollow', target='_blank') download
+					hr
+
+					#qr1.pdb
+						
+			//main
+			.main.col-sm-8.col-md-9.col-lg-10
+
+				.main-content.pd
+					h2 try it
+					p.color-red !only support ie9+
+					hr
+					textarea#je.form-control(rows='10')
+					
+					h2 features
+					hr
+					ul
+						li auto indent
+						li indent can be customized
+						li auto close for <code>quote</code>, <code>single quote</code>, <code>bracket</code>, <code>left parenthesis</code>
+						li smart tab: tab selection or single line
+						li untab keyboard shortcuts: <code>ctrl + [</code>
+						li tab keyboard shortcuts: <code>ctrl + ]</code> or just <code>tab</code>
+						li keyboard shortcuts for <code>i</code> and <code>b</code>
+
+					h2 use
+					hr
+					pre(lang='html').
+						&lt;textarea id=&quot;je&quot;&gt;&lt;/textarea&gt;&gt;
+						&lt;script src=&quot;jade-editor.js&quot;&gt;&lt;/script&gt;
+						&lt;script&gt;
+						    var je = new JadeEditor('je', {
+						        indent: '    ' //4 space as indent
+						    })
+						&lt;/script&gt;		
+
+					h2 License
+					hr
+					p MIT
+
+
+
+				include parts/footer-html
+include parts/footer-js
+- JadeEditorPath = JadeEditorPath || host
+script(src='#{JadeEditorPath}/jade-editor#{env === "production"?".min":""}.js?#{version}')
+script.
+	$(function() {
+
+		var je = new JadeEditor('je')
+		//end
+	})
+include parts/footer-end
