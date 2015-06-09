@@ -2,6 +2,12 @@ include parts/head1
 meta(name='description', content='#{siteDesc}')
 meta(name='keywords', content='#{siteKeywords}')
 title #{siteName}
+style.
+	.main h2 {
+		margin-top: 40px;
+	}
+
+
 include parts/head2
 include parts/bg
 #wrapper
@@ -26,14 +32,32 @@ include parts/bg
 					#qr1.pdb
 						
 			//main
-			.main.col-sm-8.col-md-9.col-lg-10
+			.main.col-sm-8.col-md-9.col-lg-10.pd
 
 				.main-content.pd
 					h2 try it
-					p.color-red !only support ie9+
 					hr
-					textarea#je.form-control(rows='10')
+					- if(!ua.modern)
+						p.alert.alert-danger !only support ie9+
 					
+					.jade-editor
+						textarea#je.form-control(rows='10')
+						pre.jade-editor-syntax.prettyprint(lang='jade').
+					p
+						span keyboard shortcuts: 
+						code.mg-sec ctrl + i
+						code.mg-sec ctrl + b
+						code.mg-sec ctrl + [
+						code.mg-sec ctrl + ]
+					
+					h2 shortcuts
+					hr
+					ul
+						li <code>ctrl + ]</code>, <code>ctrl + ]</code>: more indent
+						li <code>ctrl + [</code>: less indent
+						li <code>ctrl + i</code>: '&lt;i>[selection]&lt;/i>'
+						li <code>ctrl + b</code>: '&lt;b>[selection]&lt;/b>'
+
 					h2 features
 					hr
 					ul
@@ -44,19 +68,25 @@ include parts/bg
 						li untab keyboard shortcuts: <code>ctrl + [</code>
 						li tab keyboard shortcuts: <code>ctrl + ]</code> or just <code>tab</code>
 						li keyboard shortcuts for <code>i</code> and <code>b</code>
+						li syntax highlighting by google code prettify
 
 					h2 use
 					hr
 					pre(lang='html').
-						&lt;textarea id=&quot;je&quot;&gt;&lt;/textarea&gt;&gt;
-						&lt;script src=&quot;jade-editor.js&quot;&gt;&lt;/script&gt;
+						&lt;link rel=&quot;stylesheet&quot; href=&quot;dist/jade-editor.css?0.1.0&quot;&gt;
+						&lt;div class=&quot;jade-editor&quot;&gt;
+						    &lt;textarea id=&quot;je&quot;&gt;&lt;/textarea&gt;
+						    &lt;pre lang=&quot;jade&quot; class=&quot;jade-editor-syntax prettyprint&quot;&gt;&lt;/pre&gt;
+						&lt;/div&gt;
+						&lt;script src=&quot;dist/vernder/prettify.js&quot;&gt;&lt;/script&gt;
+						&lt;script src=&quot;dist/jade-editor.min.js&quot;&gt;&lt;/script&gt;
 						&lt;script&gt;
 						    var je = new JadeEditor('je', {
 						        indent: '    ' //4 space as indent
 						    })
-						&lt;/script&gt;		
+						&lt;/script&gt;
 
-					h2 License
+					h2 license
 					hr
 					p MIT
 

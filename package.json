@@ -1,7 +1,7 @@
 {
   "name": "jade-editor",
   "description": "jade online editor",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "keywords": [
     "jade",
     "editor"
@@ -57,7 +57,8 @@
     "karma-coverage": "^0.2.7",
     "karma-mocha": "*",
     "karma-phantomjs-launcher": "^0.1.4",
-    "run-sequence": "^1.0.2"
+    "run-sequence": "^1.0.2",
+    "gulp-stylus": "^2.0.0"
   },
   "engines": {
     "node": "^0.12"

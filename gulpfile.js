@@ -1,14 +1,18 @@
 
 var gulp = require('gulp')
-var path = require('path')
-var util = require('util')
-var gutil = require('gulp-util')
-var changed = require('gulp-changed')
-var pkg = require('./package.json')
-var fs = require('fs')
-var rename = require('gulp-rename')
-var plumber = require('gulp-plumber')
-var watch = require('gulp-watch')
+,path = require('path')
+,util = require('util')
+,gutil = require('gulp-util')
+,changed = require('gulp-changed')
+,pkg = require('./package.json')
+,fs = require('fs')
+,rename = require('gulp-rename')
+,plumber = require('gulp-plumber')
+,watch = require('gulp-watch')
+,stylus = require('gulp-stylus')
+,stylusOptions = {
+	compress: true
+}
 
 // CONFIG
 //
@@ -39,6 +43,11 @@ gulp.task('clean:dist', function() {
 		.pipe(clean())
 })
 
+gulp.task('stylus', function () {
+	gulp.src('./src/jade-editor.styl')
+		.pipe(stylus(stylusOptions))
+		.pipe(gulp.dest('./dist/'))
+})
 
 // SCRIPTS
 //
@@ -60,6 +69,13 @@ gulp.task('scripts:dist', function() {
 		.pipe(uglify())
 		.pipe(concat.header(banner))
 		.pipe(gulp.dest(src.dist))
+
+	gulp.src(['./src/vender/*.js'])
+		.pipe(uglify())
+		.pipe(gulp.dest(src.dist + '/vender'))
+
+	runSequence('stylus')
+
 
 })
 
@@ -96,8 +112,13 @@ gulp.task('dist', function() {
 
 
 gulp.task('watch',  function () {
+
 	watch('./src/' + pkg.name + '.js', function() {
 		runSequence('dist')
+	})
+
+	watch('./src/*.styl', function() {
+		runSequence('stylus')
 	})
 
 })

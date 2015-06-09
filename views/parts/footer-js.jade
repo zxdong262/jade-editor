@@ -4,7 +4,16 @@ script.
 		,href: '#{href}'
 	}
 
-- if(!ua || ua.modern)
-	script(src='#{cdn}/apps/h5/js/min/pack.js?#{version}')
+- if(env === 'production')
+	- if(!ua || ua.modern)
+		script(src='#{cdn}/apps/h5/js/min/pack.js?#{version}')
+	- else
+		script(src='#{cdn}/apps/h5/js/min/pack-old.js?#{version}')
+
 - else
-	script(src='#{cdn}/apps/h5/js/min/pack-old.js?#{version}')
+	script(src='#{host}/vender/prettify.js?#{version}')
+	- if(!ua || ua.modern)
+		script(src='#{cdn}/apps/h5/js/dev/pack-je.js?#{version}')
+	- else
+		script(src='#{cdn}/apps/h5/js/dev/pack-je-old.js?#{version}')
+

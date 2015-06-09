@@ -15,6 +15,8 @@ or
 npm install jade-editor
 ```
 
+all the file are in <code>dist</code> folder
+
 ## features
 - auto indent
 - indent can be customized
@@ -23,11 +25,23 @@ npm install jade-editor
 - untab keyboard shortcuts: <code>ctrl + [</code>
 - tab keyboard shortcuts: <code>ctrl + ]</code> or just <code>tab</code>
 - keyboard shortcuts for <code>i</code> and <code>b</code>
+- syntax highlighting by google code prettify
+
+## shortcuts
+- <code>ctrl + ]</code>, <code>ctrl + ]</code>: more indent
+- <code>ctrl + [</code>: less indent
+- <code>ctrl + i</code>: '&lt;i>[selection]&lt;/i>'
+- <code>ctrl + b</code>: '&lt;b>[selection]&lt;/b>'
 
 ## use
 ```html
-<textarea id="je"></textarea>>
-<script src="jade-editor.js"></script>
+<link rel="stylesheet" href="dist/jade-editor.css?0.1.0">
+<div class="jade-editor">
+    <textarea id="je"></textarea>
+    <pre lang="jade" class="jade-editor-syntax prettyprint"></pre>
+</div>
+<script src="dist/vernder/prettify.js"></script>
+<script src="dist/jade-editor.min.js"></script>
 <script>
     var je = new JadeEditor('je', {
         indent: '    ' //4 space as indent
@@ -35,10 +49,8 @@ npm install jade-editor
 </script>
 ```
 
-## status
-- lots of todos: smarter shortcut behavior, preview api, syntax highlighting...
-- need test
-- just the first release
+## todo
+preview api, test
 
 ## License
 MIT
