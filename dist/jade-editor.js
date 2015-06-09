@@ -101,9 +101,10 @@ JadeEditor.prototype.updateSyntax = function() {
 
 	if(!pre) return
 
-	pre.innerHTML = dom.value
+	pre.innerHTML = dom.value.replace(/</g, '&lt;').replace(/>/g, '&gt;')
 	pre.classList.remove('prettyprinted')
 	prettyPrint()
+	
 }
 
 JadeEditor.prototype.autoGrow = function() {
