@@ -92,7 +92,6 @@ JadeEditor.prototype.updateSyntax = function() {
 	,pre = th.pre
 
 	if(!pre) return
-	console.log('dom.value2:' + dom.value)
 	pre.innerHTML = dom.value.replace(/</g, '&lt;').replace(/>/g, '&gt;')
 	pre.classList.remove('prettyprinted')
 	prettyPrint()
@@ -380,7 +379,7 @@ JadeEditor.prototype.handleKeyEvt_b = function(event, cb) {
 	dom.selectionStart = nSelStart === nSelEnd?(nSelStart + 3):nSelStart
 	dom.selectionEnd = nSelEnd + (nSelStart === nSelEnd?3:7)
 	cb.call(th)
-	
+
 	//end
 }
 
