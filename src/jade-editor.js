@@ -36,7 +36,7 @@ JadeEditor.prototype.init = function(id, _options) {
 	,th = this
 
 	this.dom = document.getElementById(id)
-	this.pre = this.dom.nextSibling
+	this.pre = this.dom.nextSibling || this.dom.nextElementSibling
 
 	this.options = {}
 	this.options.indent = options.indent || defaults.indent

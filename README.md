@@ -15,7 +15,7 @@ or
 npm install jade-editor
 ```
 
-all the file are in <code>dist</code> folder
+all the file are in <code>dist</code> folder, other code are just for jade-editor.org.
 
 ## features
 - auto indent

@@ -1,6 +1,6 @@
 /**
  * jade-editor
- * @version v0.2.3 - 2015-06-09
+ * @version v0.2.4 - 2015-06-09
  * @link http://jade-editor.org
  * @author ZHAO Xudong (zxdong@gmail.com)
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -45,7 +45,7 @@ JadeEditor.prototype.init = function(id, _options) {
 	,th = this
 
 	this.dom = document.getElementById(id)
-	this.pre = this.dom.nextSibling
+	this.pre = this.dom.nextSibling || this.dom.nextElementSibling
 
 	this.options = {}
 	this.options.indent = options.indent || defaults.indent
