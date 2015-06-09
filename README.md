@@ -50,7 +50,7 @@ all the file are in <code>dist</code> folder
 ```
 
 ## todo
-preview api, test
+test
 
 ## License
 MIT
