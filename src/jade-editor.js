@@ -52,6 +52,20 @@ JadeEditor.prototype.evt = function() {
 	var th = this
 	,dom = th.dom
 
+	dom.addEventListener('keydown', function(event, cb) {
+
+		var keycode = event.keyCode
+
+		,kf = JadeEditor.keycodes.keydown[keycode]
+
+		if(!kf) return
+
+		th['handleKeyEvt_' + kf](event, th.updateSyntax)
+
+		//dom.focus()
+
+	}, false)
+
 	dom.addEventListener('keyup', function(event, cb) {
 
 		var keycode = event.keyCode
@@ -66,19 +80,6 @@ JadeEditor.prototype.evt = function() {
 
 	}, false)
 
-	dom.addEventListener('keydown', function(event, cb) {
-
-		var keycode = event.keyCode
-
-		,kf = JadeEditor.keycodes.keydown[keycode]
-
-		if(!kf) return th.updateSyntax()
-
-		th['handleKeyEvt_' + kf](event, th.updateSyntax)
-
-		//dom.focus()
-
-	}, false)
 
 	th.autoGrow()
 
@@ -91,11 +92,11 @@ JadeEditor.prototype.updateSyntax = function() {
 	,pre = th.pre
 
 	if(!pre) return
-
+	console.log('dom.value2:' + dom.value)
 	pre.innerHTML = dom.value.replace(/</g, '&lt;').replace(/>/g, '&gt;')
 	pre.classList.remove('prettyprinted')
 	prettyPrint()
-	
+
 }
 
 JadeEditor.prototype.autoGrow = function() {
@@ -134,7 +135,7 @@ JadeEditor.prototype.handleKeyEvt_tab = function(event, cb) {
 		dom.selectionEnd = nSelStart === nSelEnd?nSelStart + opts.indent.length:nSelStart + targetText.length
 	}
 
-	cb()
+	cb.call(th)
 	//end
 }
 
@@ -156,7 +157,7 @@ JadeEditor.prototype.handleKeyEvt_enter = function(event, cb) {
 
 	dom.value = sOldText.substring(0, nSelStart) + spaces + opts.indent + sOldText.substring(nSelEnd)
 
-	cb()
+	cb.call(th)
 	//end
 }
 
@@ -188,7 +189,7 @@ JadeEditor.prototype.handleKeyEvt_backspace = function(event, cb) {
 		currentLineToSelStartText.replace(indent, '') + 
 		sOldText.substring(nSelEnd)
 
-	cb()
+	cb.call(th)
 	//end
 }
 
@@ -216,7 +217,7 @@ JadeEditor.prototype.handleKeyEvt_open_bracket = function(event, cb) {
 			sOldText.substring(nSelEnd)
 		dom.selectionStart = nSelStart === nSelEnd?nSelStart + 1:nSelStart
 		dom.selectionEnd = nSelEnd + (nSelStart === nSelEnd?1:2)
-		return cb()
+		return cb.call(th)
 	}
 
 	var noSel = !targetText.length
@@ -261,7 +262,7 @@ JadeEditor.prototype.handleKeyEvt_open_bracket = function(event, cb) {
 	}
 
 
-	cb()
+	cb.call(th)
 	//end
 }
 
@@ -293,7 +294,7 @@ JadeEditor.prototype.handleKeyEvt_single_quote = function(event, cb) {
 
 	dom.selectionStart = nSelStart === nSelEnd?nSelStart + 1:nSelStart
 	dom.selectionEnd = nSelEnd + (nSelStart === nSelEnd?1:2)
-	cb()
+	cb.call(th)
 	//end
 
 }
@@ -309,7 +310,7 @@ JadeEditor.prototype.handleKeyEvt_left_bracket = function(event, cb) {
 
 	,char = event.shiftKey?'"':"'"
 
-	if(!event.shiftKey) return
+	if(!event.shiftKey) return cb.call(th)
 
 	event.preventDefault()
 
@@ -322,7 +323,7 @@ JadeEditor.prototype.handleKeyEvt_left_bracket = function(event, cb) {
 
 	dom.selectionStart = nSelStart === nSelEnd?nSelStart + 1:nSelStart
 	dom.selectionEnd = nSelEnd + (nSelStart === nSelEnd?1:2)
-	cb()
+	cb.call(th)
 	//end
 
 }
@@ -336,20 +337,23 @@ JadeEditor.prototype.handleKeyEvt_i = function(event, cb) {
 	,nSelEnd = dom.selectionEnd
 	,sOldText = dom.value
 
-	if(!event.ctrlKey) return
+	
+
+	if(!event.ctrlKey) return cb.call(th)
 
 	event.preventDefault()
 
-	dom.value = 
-		sOldText.substring(0, nSelStart) + 
-		'<i>' + 
-		sOldText.substring(nSelStart, nSelEnd) + 
-		'</i>' + 
-		sOldText.substring(nSelEnd)
+		dom.value = 
+			sOldText.substring(0, nSelStart) + 
+			'<i>' + 
+			sOldText.substring(nSelStart, nSelEnd) + 
+			'</i>' + 
+			sOldText.substring(nSelEnd)
 
-	dom.selectionStart = nSelStart === nSelEnd?nSelStart + 3:nSelStart
-	dom.selectionEnd = nSelEnd + (nSelStart === nSelEnd?3:7)
-	cb()
+		dom.selectionStart = nSelStart === nSelEnd?nSelStart + 3:nSelStart
+		dom.selectionEnd = nSelEnd + (nSelStart === nSelEnd?3:7)
+		cb.call(th)
+
 	//end
 }
 
@@ -362,7 +366,7 @@ JadeEditor.prototype.handleKeyEvt_b = function(event, cb) {
 	,nSelEnd = dom.selectionEnd
 	,sOldText = dom.value
 
-	if(!event.ctrlKey) return
+	if(!event.ctrlKey) return cb.call(th)
 		
 	event.preventDefault()
 
@@ -375,7 +379,8 @@ JadeEditor.prototype.handleKeyEvt_b = function(event, cb) {
 
 	dom.selectionStart = nSelStart === nSelEnd?(nSelStart + 3):nSelStart
 	dom.selectionEnd = nSelEnd + (nSelStart === nSelEnd?3:7)
-	cb()
+	cb.call(th)
+	
 	//end
 }
 
