@@ -7,7 +7,6 @@ _ = require('lodash')
 	siteName: packageInfo.name
 	,siteDesc: packageInfo.description
 	,version: packageInfo.version
-	,JadeEditorPath: ''
 }
 
 ,setting = {

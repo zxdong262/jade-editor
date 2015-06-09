@@ -94,8 +94,6 @@ include parts/bg
 
 				include parts/footer-html
 include parts/footer-js
-- JadeEditorPath = JadeEditorPath || host
-script(src='#{JadeEditorPath}/jade-editor#{env === "production"?".min":""}.js?#{version}')
 script.
 	$(function() {
 
