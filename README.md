@@ -1,7 +1,7 @@
 # jade-editor
-jade online editor for jade users.
+jade online editor for jade users.[!only support webkit browsers for now]
 
-## demo
+## demo & doc
 visit <a href='http://jade-editor.org'>http://jade-editor.org</a>
 
 ## get

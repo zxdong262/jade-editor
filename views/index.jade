@@ -37,8 +37,8 @@ include parts/bg
 				.main-content.pd
 					h2 try it
 					hr
-					- if(!ua.modern)
-						p.alert.alert-danger !only support ie9+
+					- if(!ua.webkit)
+						p.alert.alert-danger !only support webkit browsers
 					
 					.jade-editor
 						textarea#je.form-control(rows='10')
@@ -89,7 +89,7 @@ include parts/bg
 					h2 license
 					hr
 					p MIT
-					
+
 					include parts/disqus
 
 
