@@ -38,6 +38,7 @@
     ,"useragent": "*"
     ,"koa-mount": "*"
     ,"koa-router": "*"
+    ,"jade": "*"
   }
   ,"devDependencies": {
     "gulp": "*",

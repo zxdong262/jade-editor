@@ -19,3 +19,46 @@ script.
 
 script(src='#{host}/jade-editor#{env === "production"?".min":""}.js?#{version}')
 
+script.
+	$(function() {
+
+		var je = new JadeEditor('je')
+		,preview = $('.preview')
+
+		//tab
+		$('.nav a').click(function() {
+
+			var t = $(this).parent()
+			,tab = t.data('tab')
+			t.addClass('active').siblings().removeClass('active')
+			$('.tab-contents .tab-content.' + tab).removeClass('hide').siblings('.tab-content').addClass('hide')
+
+			if(tab === 'preview') doPreview()
+		})
+
+		function doPreview() {
+
+			render('<div class="">loading...</div>')
+
+			var ja = je.dom.value
+
+			$.ajax({
+				url: h5.host + '/preview-jade'
+				,type: 'post'
+				,data: {
+					jade: ja
+				}
+				,success: function(res) {
+					if(res.code) render('<div class="">' + res.error + '</div>')
+					else render(res.html)
+				}
+			})
+		}
+
+		function render(html) {
+			preview.html(html)
+		}
+
+		//end
+	})
+

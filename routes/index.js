@@ -6,10 +6,16 @@ var _ = require('lodash')
 ,tools = require('../lib/tools')
 ,ua = require('../lib/ua')
 ,Router = require('koa-router')
+,api = require('./api')
 
 exports.init = function(app) {
 	
 	var routePage = new Router()
+
+	var routeApi = new Router()
+
+	//api
+	routeApi.post('/preview-jade', api.previewJade)
 
 	//page
 	routePage.get('/', page.index)
@@ -25,6 +31,9 @@ exports.init = function(app) {
 	.use(routePage.routes())
 	.use(routePage.allowedMethods())
 	
+	app
+	.use(routeApi.routes())
+	.use(routeApi.allowedMethods())
 
 	//404
 	app.use(function* (next) {

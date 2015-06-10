@@ -36,19 +36,40 @@ include parts/bg
 
 				.main-content.pd
 					h2 try it
-					hr
+
 					- if(!ua.webkit)
 						p.alert.alert-danger !only support webkit browsers
 					
-					.jade-editor
-						textarea#je.form-control(rows='10')
-						pre.jade-editor-syntax.prettyprint(lang='jade').
-					p
-						span keyboard shortcuts: 
-						code.mg-sec ctrl + i
-						code.mg-sec ctrl + b
-						code.mg-sec ctrl + [
-						code.mg-sec ctrl + ]
+					ul.nav.nav-tabs.mgtb
+						li.active.mgl(role='presentation', data-tab='edit')
+							a(href='#') edit
+						li(role='presentation', data-tab='preview')
+							a(href='#') preview
+
+					.tab-contents
+						.tab-content.edit
+							.jade-editor
+								textarea#je.form-control(rows='10')
+								pre.jade-editor-syntax.prettyprint(lang='jade').
+							p
+								span keyboard shortcuts: 
+								code.mg-sec ctrl + i
+								code.mg-sec ctrl + b
+								code.mg-sec ctrl + [
+								code.mg-sec ctrl + ]
+
+						.tab-content.preview.hide
+							iframe.embed-responsive-item()
+								html
+									head
+										meta(charset='UTF-8')
+										meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+										meta(name='viewport', content='width=device-width,initial-scale=1')
+										link(rel='stylesheet', href='http://cdn.co/share/css/base-je.css?0.2.4')
+										link(rel='stylesheet', href='http://localhost:9800/jade-editor.css?0.2.4')
+									body
+										#box
+
 					
 					h2 shortcuts
 					hr
@@ -75,15 +96,15 @@ include parts/bg
 					pre(lang='html').
 						&lt;link rel=&quot;stylesheet&quot; href=&quot;dist/jade-editor.css?0.1.0&quot;&gt;
 						&lt;div class=&quot;jade-editor&quot;&gt;
-						    &lt;textarea id=&quot;je&quot;&gt;&lt;/textarea&gt;
-						    &lt;pre lang=&quot;jade&quot; class=&quot;jade-editor-syntax prettyprint&quot;&gt;&lt;/pre&gt;
+								&lt;textarea id=&quot;je&quot;&gt;&lt;/textarea&gt;
+								&lt;pre lang=&quot;jade&quot; class=&quot;jade-editor-syntax prettyprint&quot;&gt;&lt;/pre&gt;
 						&lt;/div&gt;
 						&lt;script src=&quot;dist/vernder/prettify.js&quot;&gt;&lt;/script&gt;
 						&lt;script src=&quot;dist/jade-editor.min.js&quot;&gt;&lt;/script&gt;
 						&lt;script&gt;
-						    var je = new JadeEditor('je', {
-						        indent: '    ' //4 space as indent
-						    })
+								var je = new JadeEditor('je', {
+										indent: '    ' //4 space as indent
+								})
 						&lt;/script&gt;
 
 					h2 license
@@ -96,11 +117,5 @@ include parts/bg
 
 				include parts/footer-html
 include parts/footer-js
-script.
-	$(function() {
-
-		var je = new JadeEditor('je')
-		//end
-	})
 include parts/footer-disqus
 include parts/footer-end
