@@ -49,7 +49,7 @@ script.
 					jade: ja
 				}
 				,success: function(res) {
-					if(res.code) render('<div class="">' + res.error + '</div>')
+					if(res.code) render('<div class="">error:' + JSON.stringify(res.error) + '</div>')
 					else render(res.html)
 				}
 			})
