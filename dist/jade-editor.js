@@ -1,6 +1,6 @@
 /**
  * jade-editor
- * @version v0.2.4 - 2015-06-09
+ * @version v0.2.5 - 2015-06-18
  * @link http://jade-editor.org
  * @author ZHAO Xudong (zxdong@gmail.com)
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -164,6 +164,9 @@ JadeEditor.prototype.handleKeyEvt_enter = function(event, cb) {
 	,spaces = matchArr[1]
 
 	dom.value = sOldText.substring(0, nSelStart) + spaces + opts.indent + sOldText.substring(nSelEnd)
+	dom.selectionStart = nSelStart + spaces.length + opts.indent.length
+	dom.selectionEnd = dom.selectionStart
+	
 
 	cb.call(th)
 	//end

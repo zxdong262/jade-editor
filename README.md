@@ -54,3 +54,6 @@ test
 
 ## License
 MIT
+
+## changelog
+- 0.2.5 fix 'enter' function

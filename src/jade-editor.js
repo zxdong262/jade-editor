@@ -155,6 +155,9 @@ JadeEditor.prototype.handleKeyEvt_enter = function(event, cb) {
 	,spaces = matchArr[1]
 
 	dom.value = sOldText.substring(0, nSelStart) + spaces + opts.indent + sOldText.substring(nSelEnd)
+	dom.selectionStart = nSelStart + spaces.length + opts.indent.length
+	dom.selectionEnd = dom.selectionStart
+	
 
 	cb.call(th)
 	//end
