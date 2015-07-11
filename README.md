@@ -40,7 +40,7 @@ all the file are in <code>dist</code> folder, other code are just for jade-edito
     <textarea id="je"></textarea>
     <pre lang="jade" class="jade-editor-syntax prettyprint"></pre>
 </div>
-<script src="dist/vernder/prettify.js"></script>
+<script src="dist/vender/prettify.js"></script>
 <script src="dist/jade-editor.min.js"></script>
 <script>
     var je = new JadeEditor('je', {
