@@ -29,9 +29,11 @@ script.
 		//tab
 		$('.nav a').click(function() {
 
-			var t = $(this).parent()
+			var th = $(this)
+			,t = th.parent()
 			,tab = t.data('tab')
-			t.addClass('active').siblings().removeClass('active')
+			$('.nav a').removeClass('active')
+			th.addClass('active')
 			$('.tab-contents .tab-content.' + tab).removeClass('hide').siblings('.tab-content').addClass('hide')
 
 			if(tab === 'preview') doPreview()
