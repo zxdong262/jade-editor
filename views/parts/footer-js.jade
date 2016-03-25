@@ -3,19 +3,20 @@ script.
 		host: '#{host}'
 		,href: '#{href}'
 	}
-
-- if(env === 'production')
-	- if(!ua || ua.modern)
-		script(src='#{cdn}/apps/h5/js/min/pack.js?#{version}')
-	- else
-		script(src='#{cdn}/apps/h5/js/min/pack-old.js?#{version}')
+- if(env === 'dev')
+	script(src='#{cdn}/share/js/vender/jquery-2.2.1.min.js')
+	script(src='#{cdn}/share/js/vender/tether.min.js')
+	script(src='#{cdn}/share/js/vender/bootstrap4/bootstrap.min.js')
+	script(src='#{cdn}/share/js/vender/prettify.js')
+	script(src='#{cdn}/share/js/vender/jquery.qrcode.min.js')
+	script(src='#{cdn}/dist/canvas-shapes.js')
+	script(src='#{cdn}/apps/h5/js/dev/pi-base.js?#{version}')
 
 - else
-	script(src='#{host}/vender/prettify.js?#{version}')
-	- if(!ua || ua.modern)
-		script(src='#{cdn}/apps/h5/js/dev/pack-je.js?#{version}')
-	- else
-		script(src='#{cdn}/apps/h5/js/dev/pack-je-old.js?#{version}')
+	script(src='#{cdn}/share/js/vender/jquery-2.2.1.min.js')
+	script(src='#{cdn}/share/js/vender/tether.min.js')
+	script(src='#{cdn}/share/js/vender/bootstrap4/bootstrap.min.js')
+	script(src='#{cdn}/apps/h5/js/min/pack.js?#{version}')
 
 script(src='#{host}/jade-editor#{env === "production"?".min":""}.js?#{version}')
 
