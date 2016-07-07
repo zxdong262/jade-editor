@@ -1,6 +1,6 @@
 /**
  * jade-editor
- * @version v0.2.5 - 2015-06-18
+ * @version v0.2.7 - 2016-07-07
  * @link http://jade-editor.org
  * @author ZHAO Xudong (zxdong@gmail.com)
  * @license MIT License, http://www.opensource.org/licenses/MIT
