@@ -2,7 +2,7 @@
 jade online editor for jade users.[!only support webkit browsers for now]
 
 ## demo & doc
-visit <a href='http://jade-editor.org'>http://jade-editor.org</a>
+visit <a href='http://jade-editor.html5beta.com'>http://jade-editor.html5beta.com</a>
 
 ## get
 ```bash
