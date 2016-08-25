@@ -16,6 +16,8 @@ exports.previewJade = function* (next) {
 		var body = this.request.body
 		,ja = body.jade
 
+		if(/\s?\-.*\s+(root|global)\./.test(ja)) throw new Error('not valid jade')
+
 		var html = jade.render(ja)
 
 		this.body = {
@@ -25,9 +27,9 @@ exports.previewJade = function* (next) {
 
 	}
 	catch(e) {
-		log.err(e, 'failed render jade template')
+		log.err(e.stack || e, 'failed render jade template')
 		this.body = {
-			error: e
+			error: e.message
 			,code: 1
 		}
 	}
