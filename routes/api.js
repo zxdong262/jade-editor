@@ -16,7 +16,7 @@ exports.previewJade = function* (next) {
 		var body = this.request.body
 		,ja = body.jade
 
-		if(/\s?\-.*\s+(root|global)\./.test(ja)) throw new Error('not valid jade')
+		if(/^\- |\n\s*- /.test(ja)) throw new Error('not valid jade')
 
 		var html = jade.render(ja)
 
