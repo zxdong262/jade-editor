@@ -2,12 +2,13 @@
 /*
  * page
  */
-var _ = require('lodash')
+const _ = require('lodash')
 ,setting = h5.setting
 ,local = h5.local
 ,tools = require('../lib/tools')
 ,log = tools.log
-,jade = require('jade')
+,jade = require('pug')
+,serialize = require('serialize-javascript')
 
 exports.previewJade = function* (next) {
 
@@ -16,13 +17,11 @@ exports.previewJade = function* (next) {
 		var body = this.request.body
 		,ja = body.jade
 
-		if(/^\- |\n\s*- /.test(ja)) throw new Error('not valid jade')
-
-		var html = jade.render(ja)
+		var fn = jade.compile(ja)
 
 		this.body = {
 			code: 0
-			,html: html
+			,fn: serialize(fn)
 		}
 
 	}

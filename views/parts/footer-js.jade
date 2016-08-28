@@ -17,7 +17,7 @@ script.
 	script(src='#{cdn}/share/js/vender/tether.min.js')
 	script(src='//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js')
 	script(src='#{cdn}/apps/h5/js/min/pack.js?#{version}')
-
+script(src='https://rawgit.com/pugjs/pug/1.11.0/runtime.js', type='text/javascript')
 script(src='#{host}/jade-editor#{env === "production"?".min":""}.js?#{version}')
 
 script.
@@ -53,7 +53,10 @@ script.
 				}
 				,success: function(res) {
 					if(res.code) render('<div class="">error:' + JSON.stringify(res.error) + '</div>')
-					else render(res.html)
+					else {
+						eval(res.fn)
+						render(template({}))
+					}
 				}
 			})
 		}
