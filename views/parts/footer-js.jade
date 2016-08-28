@@ -54,8 +54,14 @@ script.
 				,success: function(res) {
 					if(res.code) render('<div class="">error:' + JSON.stringify(res.error) + '</div>')
 					else {
-						eval(res.fn)
-						render(template({}))
+						try {
+							eval(res.fn)
+							render(template({}))
+						} catch(e) {
+							render('<div class="">error:' + e.stack + '</div>')
+						}
+						
+						
 					}
 				}
 			})

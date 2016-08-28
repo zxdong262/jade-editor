@@ -63,6 +63,8 @@
     "node": "^0.12"
   },
   "scripts": {
-    "test": "gulp karma:unit"
+    "test": "gulp karma:unit",
+    "prod": "NODE_ENV=production node app",
+    "dev": "node app"
   }
 }
